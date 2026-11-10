@@ -1,0 +1,43 @@
+/*
+ * Tokens de color del portafolio, en claro y oscuro. El tema lo fija `data-theme` en <html>
+ * (script de `layout.tsx`: lo guardado por el visitante o, si no, el de su sistema).
+ * Contraste verificado (WCAG AA): `muted` y `brand` ≥ 4,5:1 contra `surface`, `surface-alt` y `card`.
+ */
+:root {
+  --brand: #0f766e;
+  --on-brand: #ffffff;
+  --surface: #f7f7f5;
+  --surface-alt: #eeefec;
+  --card: #ffffff;
+  --ink: #15171c;
+  --muted: #535864;
+  --line: #dcddd8;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --brand: #2dd4bf;
+  --on-brand: #0d1015;
+  --surface: #0d1015;
+  --surface-alt: #11151b;
+  --card: #151a21;
+  --ink: #e7e9ec;
+  --muted: #9ba3ae;
+  --line: #262d37;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-on-brand: var(--on-brand);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+}
+
+@theme {
+  --radius-card: 1rem;
+}

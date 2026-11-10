@@ -1,0 +1,367 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* Fuentes: las variables las define `src/lib/fonts.ts` (next/font). */
+@theme {
+  --font-display: var(--font-display-family), system-ui, sans-serif;
+  --font-sans: var(--font-body-family), system-ui, sans-serif;
+  --font-mono: var(--font-mono-family), ui-monospace, monospace;
+}
+
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+
+  @variant sm {
+    padding-inline: 2rem;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--color-brand);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    line-height: 1.1;
+    text-wrap: balance;
+    letter-spacing: -0.015em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 3px;
+  }
+}
+
+/*
+ * ANIMACIONES
+ * Todas dependen de la clase `motion` en <html>, que pone el script del layout solo si hay
+ * JavaScript y el visitante no pidió reducir el movimiento. Sin ella, todo se ve quieto y completo.
+ */
+
+/* Entrada al hacer scroll: `data-reveal` + `data-shown` (lo pone RevealObserver). */
+.motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  filter: blur(6px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--reveal-delay, 0) * 1ms);
+}
+
+.motion [data-reveal][data-shown] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* Hero al cargar: sube en cascada sin esperar al scroll. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    filter: blur(6px);
+  }
+}
+
+.motion [data-rise] {
+  animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--rise-delay, 0) * 1ms);
+}
+
+/* Cursor de terminal. */
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  margin-left: 0.08em;
+  vertical-align: -0.12em;
+  background: var(--color-brand);
+}
+
+.motion .caret {
+  animation: caret 1s steps(1) infinite;
+}
+
+/* Cinta de tecnologías en bucle (la lista va duplicada; se mueve la mitad). */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+.motion .marquee-track {
+  animation: marquee 40s linear infinite;
+}
+
+.motion .marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee {
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+/* Tarjeta con borde que se ilumina siguiendo el puntero (--mx/--my los pone Spotlight). */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    22rem circle at var(--mx, 50%) var(--my, 50%),
+    var(--color-brand),
+    transparent 60%
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.motion .spotlight:hover::before,
+.motion .spotlight:focus-within::before {
+  opacity: 1;
+}
+
+/*
+ * Tarjeta de presentación 3D: inclinación (--rx/--ry, las pone FlipCard), brillo (--gx/--gy)
+ * y volteo. Sin `motion`, las dos caras se muestran una al lado de la otra: la carta nunca
+ * queda escondida para quien no tiene JavaScript o pidió menos movimiento.
+ */
+.flip-card {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.motion-only {
+  display: none;
+}
+
+.motion .motion-only {
+  display: revert;
+}
+
+.motion .flip-scene {
+  perspective: 1400px;
+}
+
+.motion .flip-card {
+  gap: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(calc(var(--ry, 0deg) + var(--flip, 0deg)));
+  transition: transform 0.25s ease-out;
+}
+
+.motion .flip-card > .flip-face {
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.motion .flip-card > .flip-back {
+  transform: rotateY(180deg);
+}
+
+.motion .flip-card[data-flipped] {
+  --flip: 180deg;
+}
+
+.motion .flip-card[data-turning] {
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glare {
+  display: none;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--gx, 50%) var(--gy, 0%),
+    rgb(255 255 255 / 0.22),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.motion .glare {
+  display: block;
+}
+
+.motion .flip-scene:hover .glare {
+  opacity: 1;
+}
+
+/* Brillo que cruza la tarjeta al aparecer. */
+@keyframes sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(220%) skewX(-18deg);
+  }
+}
+
+.sheen {
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+}
+
+.motion [data-shown] .sheen {
+  animation: sheen 1.4s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Línea de tiempo que se dibuja con el scroll (navegadores con scroll-driven animations). */
+.timeline-rail {
+  transform-origin: top;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes draw-rail {
+    from {
+      transform: scaleY(0);
+    }
+  }
+
+  .motion .timeline-rail {
+    animation: draw-rail linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 60%;
+  }
+}
+
+/* Botón magnético (--tx/--ty los pone Magnetic). */
+.magnetic {
+  transform: translate(var(--tx, 0), var(--ty, 0));
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Diagrama: las flechas se dibujan en orden y un punto recorre el camino. */
+.flow-path {
+  stroke-dasharray: var(--len) var(--len);
+}
+
+.motion [data-diagram] .flow-path {
+  stroke-dashoffset: var(--len);
+}
+
+.motion [data-diagram][data-shown] .flow-path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--step) * 450ms);
+}
+
+.motion [data-diagram] .flow-node {
+  opacity: 0;
+  transform: translateY(8px);
+  transform-box: fill-box;
+}
+
+.motion [data-diagram][data-shown] .flow-node {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+  transition-delay: calc(var(--step) * 450ms);
+}
+
+.flow-dot {
+  display: none;
+}
+
+.motion [data-diagram][data-shown] .flow-dot {
+  display: block;
+  offset-path: var(--route);
+  offset-rotate: 0deg;
+  animation: travel 7s 4.6s linear infinite;
+}
+
+@keyframes travel {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* Cambio de tema: el tema nuevo se abre en círculo desde el botón (View Transitions). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}
+
+/* Saludo del hero: cada letra aparece en orden, como en una terminal. */
+@keyframes letter {
+  from {
+    opacity: 0;
+  }
+}
+
+.motion .type-letter {
+  animation: letter 0.01s steps(1) both;
+  animation-delay: calc(var(--i) * 55ms + 250ms);
+}
