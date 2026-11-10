@@ -1,6 +1,6 @@
 # Portafolio · Libardo
 
-Portafolio personal de desarrollador backend: home con animaciones, carta de presentación en
+Portafolio personal de desarrollador full stack: home con animaciones, carta de presentación en
 tarjeta 3D, proyectos, caso de estudio con diagrama animado, CV imprimible y formulario de
 contacto que llega al correo.
 

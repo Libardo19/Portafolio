@@ -8,7 +8,7 @@ export const site: Site = {
   profile: {
     name: 'Libardo',
     fullName: 'Libardo José Acosta Garcia',
-    role: 'Desarrollador Backend',
+    role: 'Desarrollador Full Stack',
     // REVISAR: ciudad (si se quiere más precisa que el país)
     city: 'Colombia',
     whatsapp: '573045250172',
@@ -30,9 +30,9 @@ export const site: Site = {
   },
 
   seo: {
-    title: 'Libardo · Desarrollador Backend (Node.js, TypeScript)',
+    title: 'Libardo · Desarrollador Full Stack (Next.js, Node.js, IA)',
     description:
-      'Desarrollador backend: APIs con Node.js, TypeScript y PostgreSQL, colas con Redis y BullMQ e integraciones con IA.'
+      'Desarrollador full stack: interfaces con Next.js y React, APIs con Node.js, TypeScript y PostgreSQL, e integraciones con IA generativa.'
   },
 
   nav: [
@@ -44,18 +44,19 @@ export const site: Site = {
   ],
 
   hero: {
-    eyebrow: 'Desarrollador Backend',
+    eyebrow: 'Desarrollador Full Stack',
     greeting: 'Hola, soy Libardo.',
-    title: 'Hola, soy Libardo. Construyo el backend de productos reales.',
-    text: 'APIs con Node.js, TypeScript y PostgreSQL, colas con Redis y BullMQ, e integraciones con servicios de IA. Hoy, cofundador y responsable del backend en JELIX.',
+    title: 'Hola, soy Libardo. Construyo productos web con IA, de punta a punta.',
+    text: 'Interfaces con Next.js y React, APIs con Node.js, TypeScript y PostgreSQL, e integraciones con servicios de IA generativa. Hoy, cofundador de JELIX.',
     primary: { label: 'Descargar CV', to: 'cv' },
     secondary: { label: 'Escríbeme', to: '/#contacto' },
     terminal: {
       request: 'GET /api/perfil',
       lines: [
-        ['rol', '"Desarrollador Backend"'],
-        ['stack', '["Node.js", "TypeScript", "Express", "Prisma"]'],
+        ['rol', '"Desarrollador Full Stack"'],
+        ['stack', '["Next.js", "React", "Node.js", "TypeScript"]'],
         ['datos', '["PostgreSQL", "Redis", "BullMQ"]'],
+        ['ia', '["HeyGen", "Claude"]'],
         ['ahora', '"Cofundador · JELIX"'],
         ['disponible', 'true']
       ]
@@ -64,17 +65,17 @@ export const site: Site = {
 
   introduction: {
     eyebrow: 'Carta de presentación',
-    title: 'Backend primero, con el producto en la cabeza.',
+    title: 'De la base de datos a la interfaz, con el producto en la cabeza.',
     // REVISAR: el texto de la carta lo aprueba Libardo.
     letter: [
-      'Soy desarrollador backend. Me gusta construir la parte que no se ve pero que sostiene todo: APIs, bases de datos, colas y las integraciones que conectan un producto con el mundo.',
-      'En finCreator construí de punta a punta un módulo de video con avatares de IA. En JELIX, que cofundé, soy el responsable del backend: diseño la API, la base de datos y el despliegue.',
+      'Soy desarrollador full stack. Me gusta llevar un producto de punta a punta: la interfaz que usa la gente, la API y la base de datos que la sostienen, y las integraciones con IA que lo hacen distinto.',
+      'En finCreator construí un módulo de video con avatares de IA. En JELIX, que cofundé, diseño la API, la base de datos y el despliegue. Y para clientes he entregado sitios completos, frontend y backend, que hoy están en producción.',
       'Trabajo con contrato de API antes del código, revisión por PR y decisiones documentadas. Busco un equipo donde pueda aportar eso y seguir creciendo.'
     ],
     signature: 'Libardo',
     facts: [
-      { label: 'Rol', value: 'Desarrollador Backend' },
-      { label: 'Stack', value: 'Node.js · TypeScript · PostgreSQL' },
+      { label: 'Rol', value: 'Desarrollador Full Stack' },
+      { label: 'Stack', value: 'Next.js · Node.js · TypeScript' },
       { label: 'Ahora', value: 'Cofundador de JELIX' }
     ],
     hint: 'Toca la tarjeta para leer mi carta'
@@ -97,7 +98,7 @@ export const site: Site = {
 
   experience: [
     {
-      role: 'Desarrollador Backend',
+      role: 'Desarrollador Full Stack',
       company: 'finCreator',
       period: 'Ene. 2026 – actual',
       current: true,
@@ -109,7 +110,7 @@ export const site: Site = {
       ]
     },
     {
-      role: 'Cofundador y líder de Backend',
+      role: 'Cofundador · Desarrollador Full Stack',
       company: 'JELIX',
       period: 'Oct. 2026 – actual',
       current: true,
@@ -124,7 +125,7 @@ export const site: Site = {
       company: 'Freelance',
       // REVISAR: fechas exactas y si fueron trabajos pagos o colaboraciones
       period: '2026',
-      summary: 'Sitios a la medida para clientes, de punta a punta o solo el backend.',
+      summary: 'Sitios a la medida para clientes, de punta a punta.',
       highlights: [
         'Sitio del Dr. Yamith Cuello, frontend y backend: landing, portal del paciente, panel de administración, agenda y seguimiento. En producción.',
         'ZÉPHIR: backend de una tienda de perfumes con cierre por WhatsApp y panel de administración.'
@@ -368,7 +369,7 @@ export const site: Site = {
 
   cv: {
     summary:
-      'Desarrollador backend que construye APIs en producción con Node.js, TypeScript, Express y Prisma sobre PostgreSQL. Ha integrado proveedores de IA generativa con colas BullMQ, webhooks firmados y eventos en tiempo real. Cofundador y responsable del backend de JELIX.',
+      'Desarrollador full stack que lleva productos web de punta a punta: interfaces con Next.js y React, y APIs en producción con Node.js, TypeScript y Prisma sobre PostgreSQL. Ha integrado proveedores de IA generativa con colas BullMQ, webhooks firmados y eventos en tiempo real. Cofundador de JELIX.',
     education: [
       {
         title: 'Ingeniería de Sistemas',
@@ -385,9 +386,9 @@ export const site: Site = {
   pages: {
     projects: {
       seo: {
-        title: 'Proyectos · Libardo, Desarrollador Backend',
+        title: 'Proyectos · Libardo, Desarrollador Full Stack',
         description:
-          'Proyectos de backend: video con IA, sitios para clientes, una API con tareas programadas y un asistente de voz.'
+          'Proyectos full stack: video con IA, sitios para clientes, una API con tareas programadas y un asistente de voz.'
       },
       eyebrow: 'Proyectos',
       title: 'Todo lo que he construido',
@@ -395,9 +396,9 @@ export const site: Site = {
     },
     cv: {
       seo: {
-        title: 'CV · Libardo, Desarrollador Backend',
+        title: 'CV · Libardo, Desarrollador Full Stack',
         description:
-          'Hoja de vida de Libardo: experiencia en backend con Node.js, TypeScript, PostgreSQL, Redis y BullMQ.'
+          'Hoja de vida de Libardo: desarrollador full stack con Next.js, React, Node.js, TypeScript, PostgreSQL e IA generativa.'
       },
       eyebrow: 'Hoja de vida',
       title: 'Currículum'

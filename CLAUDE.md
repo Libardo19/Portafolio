@@ -2,7 +2,7 @@
 
 # CLAUDE.md — portafolio
 
-Portafolio personal de Libardo (desarrollador backend), para adjuntar a LinkedIn y desplegado en Vercel.
+Portafolio personal de Libardo (desarrollador full stack), para adjuntar a LinkedIn y desplegado en Vercel.
 Nació de `jelix-web-starter`, pero **no es un mockup de JELIX_**: no hay modo propuesta y el sitio se indexa.
 
 Stack: Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Playwright + axe.
