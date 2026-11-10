@@ -1,0 +1,15 @@
+# Next.js publica parches de seguridad con regularidad: un mockup que espera semanas
+# la respuesta del cliente no debe quedarse en una versión vulnerable.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      next:
+        patterns: ['next', 'eslint-config-next', 'react', 'react-dom']
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
