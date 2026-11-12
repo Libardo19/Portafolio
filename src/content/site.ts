@@ -16,9 +16,10 @@ export const site: Site = {
     // Se genera con `npm run cv:pdf` desde este mismo archivo.
     cvPdf: '/cv-libardo.pdf',
     photo: {
+      src: '/images/libardo.jpg',
       alt: 'Foto de Libardo José Acosta Garcia',
-      // REVISAR: foto opcional
-      pending: 'Retrato de medio cuerpo, buena luz y fondo limpio'
+      width: 900,
+      height: 900
     },
     social: [
       {
@@ -186,10 +187,10 @@ export const site: Site = {
       summary:
         'Red de respuesta a emergencias en Valledupar: reportes con ubicación, solicitudes de ayuda priorizadas y alertas, incluso sin señal.',
       description: [
-        'API en FastAPI con PostgreSQL y Redis; tareas en segundo plano y programadas con Celery, todo en Docker.',
+        'API en Python con FastAPI, PostgreSQL y Redis; tareas en segundo plano y programadas con Celery, todo en Docker.',
         'Panel web para los organismos de socorro y app móvil en Flutter para ciudadanos y voluntarios. Trabajé en la API, en funciones del panel y en la app.'
       ],
-      stack: ['FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'Docker', 'React', 'Flutter'],
+      stack: ['Python', 'FastAPI', 'Celery', 'Redis', 'PostgreSQL', 'Docker', 'React', 'Flutter'],
       image: {
         src: '/images/proyectos/rescate360.jpg',
         alt: 'Centro de mando del panel web de RESCATE360 con solicitudes, reportes y alertas',
@@ -237,7 +238,8 @@ export const site: Site = {
       context: 'Proyecto personal',
       summary: 'Asistente de voz que conversa con varias IA y controla aplicaciones de Windows.',
       description: [
-        'Detección de palabra clave y transcripción local (Vosk, whisper.cpp con CUDA), interfaz en Electron y respuestas de Claude, Codex o Gemini.'
+        'Servicio en Python que detecta la palabra clave "Jarvis" en español (Vosk y openWakeWord), con su propio banco de pruebas.',
+        'Transcripción local con whisper.cpp sobre CUDA, interfaz en Electron y respuestas de Claude, Codex o Gemini.'
       ],
       stack: ['Node.js', 'TypeScript', 'Python', 'Electron', 'whisper.cpp']
     }
@@ -249,7 +251,7 @@ export const site: Site = {
       icon: 'server',
       summary:
         'APIs REST con el contrato definido antes del código, validación en la entrada y errores con un solo formato.',
-      items: ['Node.js', 'TypeScript', 'Express', 'Prisma', 'zod', 'FastAPI', 'Webhooks', 'SSE'],
+      items: ['Node.js', 'TypeScript', 'Express', 'Prisma', 'zod', 'Python', 'FastAPI', 'Webhooks', 'SSE'],
       usedIn: ['video-ia', 'yamith-cuello', 'zephir', 'rescate360'],
       span: 2
     },
@@ -257,7 +259,7 @@ export const site: Site = {
       title: 'Datos y colas',
       icon: 'database',
       summary: 'Modelos relacionales, idempotencia y trabajo pesado fuera de la petición.',
-      items: ['PostgreSQL', 'Redis', 'BullMQ', 'Celery'],
+      items: ['PostgreSQL', 'SQL Server', 'Redis', 'BullMQ', 'Celery'],
       usedIn: ['video-ia', 'rescate360']
     },
     {
@@ -303,8 +305,10 @@ export const site: Site = {
     'Express',
     'Prisma',
     'PostgreSQL',
+    'SQL Server',
     'Redis',
     'BullMQ',
+    'Python',
     'FastAPI',
     'Celery',
     'Docker',
